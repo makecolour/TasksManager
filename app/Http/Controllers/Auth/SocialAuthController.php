@@ -31,10 +31,6 @@ class SocialAuthController
             ]
         );
 
-        if($authUser->hasRole('INACTIVE_STAFF')) {
-            $authUser->roles()->detach('INACTIVE_STAFF');
-        }
-
         $authUser->update([
             'email_verified_at' => now(),
         ]);

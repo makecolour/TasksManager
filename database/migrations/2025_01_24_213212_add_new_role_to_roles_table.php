@@ -9,48 +9,27 @@ return new class extends Migration
 {
     public function up()
     {
-        DB::table('roles')->insert([
-            'name' => 'INACTIVE_STAFF',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'BACKEND DEVELOPER',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'FRONTEND DEVELOPER',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'FULLSTACK DEVELOPER',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'TESTER',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'DEV-OPS',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('roles')->insert([
-            'name' => 'MANAGER',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+
         DB::table('roles')->insert([
             'name' => 'ADMIN',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
         DB::table('roles')->insert([
-            'name' => 'TEAM LEADER',
+            'name' => 'UPLOADER',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'READER',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'AUTHOR',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
