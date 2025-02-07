@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VersionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +20,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('role:ADMIN,AUTHOR')->group(function () {
-    Route::get('/admin', function () {
-        return 'Admin Page';
+Route::middleware('role:UPLOADER')->group(function () {
+    Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::post('/books', [BookController::class, 'store'])->name('books.store');
+    Route::post('/books/{book}/versions', [VersionController::class, 'store'])->name('versions.store');
+});
+
+Route::prefix('admin')->middleware('role:ADMIN')->group(function () {
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'list'])->name('users.index');
+        Route::post('/{user}/roles', [UserController::class, 'assignRole'])->name('users.assignRole');
+        Route::post('/roles', [UserController::class, 'assignRoles'])->name('users.roles');
     });
 });
 

@@ -68,4 +68,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function assignRole(string $role): void
+    {
+        $role = Role::where('name', $role)->first();
+        if (!$this->roles->contains($role->id)) {
+            $this->roles()->attach($role->id);
+        }
+    }
 }

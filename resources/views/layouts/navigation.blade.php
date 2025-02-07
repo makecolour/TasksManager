@@ -15,6 +15,20 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(Auth::user()->hasRole('ADMIN'))
+                        <x-dropdown align="right" width="60">
+                            <x-slot name="trigger">
+                                <x-nav-link :active="request()->routeIs('users.*')">
+                                    {{ __('Users') }}
+                                </x-nav-link>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('users.index')">
+                                    {{ __('Users list') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    @endif
                 </div>
             </div>
 

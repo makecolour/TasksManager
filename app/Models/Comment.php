@@ -24,8 +24,39 @@ class Comment extends Model
         return $this->belongsTo(Post::class, 'post_id');
     }
 
+    public function version()
+    {
+        return $this->belongsTo(Version::class, 'version_id');
+    }
+
     public function replyTo()
     {
         return $this->belongsTo(Comment::class, 'reply_to');
     }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'reply_to');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Comment::class, 'reply_to');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Comment::class, 'reply_to');
+    }
+
+    public function scopeParent($query)
+    {
+        return $query->whereNull('reply_to');
+    }
+
+    public function scopeChildren($query)
+    {
+        return $query->whereNotNull('reply_to');
+    }
+
 }

@@ -14,8 +14,18 @@ class Version extends Model
         return $this->belongsTo(Book::class);
     }
 
+    public function bookType()
+    {
+        return $this->belongsTo(BookType::class);
+    }
+
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
